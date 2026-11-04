@@ -1,0 +1,5 @@
+gradio>=5.20,<6
+numpy
+scipy
+soundfile
+databricks-sdk

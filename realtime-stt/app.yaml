@@ -1,0 +1,27 @@
+command: ["python", "app.py"]
+
+env:
+  - name: BACKEND                 # gateway | mock (mock = thử giao diện, không gọi endpoint)
+    value: "gateway"
+
+  # --- Whisper ---
+  - name: WHISPER_ENDPOINT
+    value: "ai_training_whisper_endpoint"
+  - name: WHISPER_INPUT_FORMAT    # auto = tự dò lần gọi đầu; xem log app để biết định dạng nào chạy rồi điền cố định
+    value: "auto"                 # vd: "dataframe:audio", "inputs_list", "inputs_str", "inputs_dict", "instances"
+  - name: WHISPER_PARAMS          # tham số thêm nếu endpoint hỗ trợ, vd {"language": "vi"}; để trống nếu không chắc
+    value: ""
+
+  # --- Gemini ---
+  - name: GEMINI_ENDPOINT
+    value: "gemini-3-8-flash-ai_training"
+  - name: GLOSSARY                # thuật ngữ riêng của bạn, giúp Gemini sửa đúng từ bị nghe nhầm
+    value: "Databricks, Unity Catalog, AI Gateway, Delta Lake"
+
+  # --- Độ nhạy ---
+  - name: SILENCE_RMS             # phòng ồn mà câu không chốt -> tăng (0.02-0.03); nói nhỏ bị mất chữ -> giảm
+    value: "0.012"
+  - name: SILENCE_SEC             # lặng bao lâu thì chốt câu
+    value: "0.6"
+  - name: PARTIAL_STEP_SEC        # bao lâu cập nhật dòng tạm; tăng lên 1.5 nếu Whisper bị rate limit (429)
+    value: "0.8"
