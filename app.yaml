@@ -1,0 +1,24 @@
+command: ["python", "server.py"]
+
+env:
+  - name: BACKEND
+    value: "gateway"
+
+  - name: WHISPER_ENDPOINT
+    value: "ai_training_whisper_endpoint"
+  - name: WHISPER_INPUT_FORMAT
+    value: "auto"
+  - name: WHISPER_PARAMS
+    value: ""
+
+  - name: GEMINI_ENDPOINT
+    value: "gemini-3-8-flash-ai_training"
+  - name: GLOSSARY
+    value: "Databricks, Unity Catalog, AI Gateway, Delta Lake"
+
+  - name: SILENCE_RMS
+    value: "0.012"
+  - name: SILENCE_SEC
+    value: "0.6"
+  - name: PARTIAL_STEP_SEC
+    value: "0.8"
